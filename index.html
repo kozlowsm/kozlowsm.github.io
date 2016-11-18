@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!--[if IE]>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <![endif]-->
+    <title>Twitter API </title>
+    <!--REQUIRED STYLE SHEETS-->
+    <!-- BOOTSTRAP CORE STYLE CSS -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <!-- FONTAWESOME STYLE CSS -->
+    <link href="assets/css/font-awesome.min.css" rel="stylesheet" />
+    <!--ANIMATED FONTAWESOME STYLE CSS -->
+    <link href="assets/css/font-awesome-animation.css" rel="stylesheet" />
+       <!-- CUSTOM STYLE CSS -->
+    <link href="assets/css/style.css" rel="stylesheet" />
+    <!-- GOOGLE FONT -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body >
+       <!-- NAV SECTION -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#home-sec">HOME</a></li>
+                    <li><a href="#welcome">WELCOME</a></li>
+                     <li><a href="#gettingStarted">GETTING STARTED</a></li>
+                    <li><a href="#coding">CODING</a></li>
+					<li><a href="#FinalBot">CREATING A BOT</a></li>
+                </ul>
+            </div>
+           
+        </div>
+    </div>
+     <!--END NAV SECTION -->
+    
+    <!--HOME SECTION-->
+    <div id="home-sec">
+
+   
+    <div class="container" id="home" >
+        <div class="row text-center">
+            <div class="col-md-12">
+                <span class="head-main">The Twitter API</span>
+                <h3>By: Michael Kozlowski</h3>
+				<img src = "assets/Gimages/twitbird.png" width="15%" height="15%">
+				
+            </div>
+        </div>
+    </div>
+         </div>
+    <!--END HOME SECTION-->
+
+
+   
+
+    <!--SERVICES SECTION-->    
+    <section  id="welcome">
+        <div class="container">
+			<h1>Welcome</h1>
+            <h2>Welcome to the Twitter API how-to guide!</h2>
+			<p>
+			This guide will teach you to get started with the Twitter API by buidling
+			Twitter bots. This guide assumes you have a general understanding of JavaScript
+			as well as JSON(JavaScript Object Notation).
+			</br></br>
+			Reference material for this guide include:
+			<ul>
+				<li><a href="https://dev.twitter.com/docs">Twitter Developer Documentation</a></li>
+				<li><a href="https://github.com/ttezel/twit">Twit - Twitter API Client</a></li>
+			</ul>
+			</p>
+			<h2>What is an API?</h2>
+			<p>
+			An API or Application Programming Interface, is, by definition, a set of routines, protocols,
+			and tools for building software applications. This is a bit too technical, so lets break it down.
+			</p>
+			<p>
+			An API is usually released by a software company to accompany the product that they offer. The API
+			is released to the public and it allows other software developers to design products that are powered 
+			by the same service. Essentially, an API gives you access to things that are happening behind the scenes
+			without actually having to go behind the scenes. We aren't all that concerned with the inner workings of 
+			Twitter, we just want access to specific data within their system so we can build applications.
+			</p>
+			
+			<h2>What are we going to learn?</h2>
+			<p>
+			<ul>
+				<li>We are going to learn how to extract useful information from the <a href="https://dev.twitter.com/docs">Twitter API</a>
+				by using the <a href="https://github.com/ttezel/twit">Twit</a> library, an API client for <a href="https://nodejs.org/en/">NodeJS.</a></li>
+				</br>
+				<li>We are going to learn about the various methods by which we can obtain data from Twitter, including how to get information from tweets and users, 
+				how to post tweets using the API, and how to reply to users</li>
+				</br>
+				<li>We will put all of this information together at the end to build a Twitter Bot that responds to users when mentioned and sends them a
+				motivational/positive message</li>
+			</ul>
+			</p>
+			<p><h3>Let's get started!</h3></p>
+        </div>
+    </section>
+    <!--END SERVICES SECTION-->
+	
+	
+     <!--STATS SECTION-->
+    <section class="c-blue" id="gettingStarted">
+        <div class="container">
+			 <h1>Getting Started</h1>
+			 <h2>What you'll need:</h2>
+			 <p>Before we can get started digging into the Twitter API and building bots, we'll need to setup a few things first
+			 to ensure it all runs smoothly
+			 </br>
+			 <ul>
+				<li>We need to make sure NodeJs is installed</li>
+				<li>Create a new Twitter account for your bot</li>
+				<li>Create a new Twitter application</li>
+				<li>Obtain the API keys to access the API</li>
+			 </ul>
+			 </p>
+			 
+			 <h2>Installing NodeJS</h2>
+			 <p>If you don't already have NodeJs installed on your computer, you can head over to <a href="https://nodejs.org/en/">NodeJs.org</a>
+			 and follow the instructions for installing it on your system.
+			 </p>
+			 <h2>Setting up a Twitter account for our bot</h2>
+			 <p>
+			 Before we begin coding and interacting with Twitter, we will need to create a Twitter account for our bot. To do this head over to 
+			 <a href="https://twitter.com/signup">twitter.com/signup</a>. Enter the the required infomration and pick a Twitter handle(name) for your bot.
+			 </p>
+			 <img src="assets/Gimages/Twitter signup.png" width="35%" height="35%">
+			 <p>Next, in order to communciate with the Twitter API we need to obtain our API keys. To do this, go to <a href="https://apps.twitter.com">apps.twitter.com</a>
+			 and click on <b>Create an Application</b> follow the directions on the screen that look something like this: </p>
+			 <img src="assets/Gimages/Create application data input.png" width="50%" height="50%">
+			 <p>Now that we have created our application, we need to obtain our API keys. Head over to the <b>"Keys and Access tokens"</b> tab at the top of the page, once you 
+			 are on this page you will need to scroll down and and click <b>"Create my access token"</b> after you have completed these steps the page you are on should like this: </p>
+			 <img src="assets/Gimages/Full Keys screenshot.png" width="65%" height="65%">
+			 <p>Keep this page open, or take note of those keys, will need to use them later. You should see:
+			 <ul>
+				<li>Consumer Key</li>
+				<li>Consumer Secret</li>
+				<li>Access Token</li>
+				<li>Acces Token Secret</li>
+			 </ul>
+			 </p>
+			 <h2>Setting up our local environment</h2>
+			 <p>This is the last step before we get into using the Twitter API so bear with me.
+			 <ul>
+				<li>Create a new directory or folder to save the code for the Twitter bot, I named mine "Twitter Bot"</li>
+				</br>
+				<li>Now head over to the terminal/command line and use the <code>cd</code> command to go into the newly created Twitter Bot directory</li>
+				</br>
+				<li>In this directory we want to create a 'package.json' file - this file contains the metadata relevant to the project as well as the project dependencies.
+				 In the terminal enter <code>npm init</code> and follow the steps to create the file. *npm stands for Node Package Manager and it is used to install node package for specific projects</li>
+				 </br>
+				<li>Now we want to install the Twit library that we mentioned earlier, this will allow us to access and interact with the Twitter API. In the terminal enter <code>npm install twit --save</code></li>
+				</br>
+				<li>Finally, create the file you will be writing your code in, I named mine index.js</li>
+			 </ul>
+			 </p>
+			 <h3>Now we are ready to start coding!</h3>
+			 
+			 
+            </div>
+        </div>
+    </section>
+	
+	<section  id="coding">
+        <div class="container">
+                <h1>Using the Twitter API</h1>
+				<h3>Now that we have everything setup, its time to start coding. Open your favorite text editor and let's get started!</h3>
+				<h2>Our first API request - using get </h2>
+				<p>Now we are going to setup our index.js file to make use of the Twit library. This library will allow us to make calls to the Twitter API. Our first request
+				will be using the get method to return some data about a specific user, in this case NASA, in the form of raw JSON data to the console.
+				</br>
+				</br>
+				Here's the code for with the setup and first request (the keys are blocked out because they are connected to my twitter bot account):</p>
+				<img src="assets/Gimages/get_request.png">
+				<p>Not too bad right? Let's break this down one line at a time: 
+				<ul>
+					<li><b>Line 2: </b><code>var twit = require('twit')</code> This line of code essentially imports the twit library so that we can make use of its functions and interact with the Twitter API.
+					It loads the twit package and gives us access to all the functions and properites of the library throught the <code>twit</code> variable. Without this, accessing the API would be much more difficult</li>
+					<li><b>Lines 5-9: </b>Remember those keys we got after creating a new Twitter application? Well it's time to put those to use. <code>var t = new twit</code> is creating a new instance of twit with our
+					API keys. These keys are tied to our new Twitter account and allow us to access the Twitter API. Twitter uses these to keep track of how much and how often we are using the API. This, along with line 2,
+					will appear everytime we are using twit and the Twitter API.</li>
+					<li><b>Lines 13-14: </b> <code>t.get()</code> means we are calling the get function in the twit (t) object. <code>'users/lookup'</code> signifies the action we are taking - we want to lookup information. 
+					<code>{screen_name: 'NASA'}</code> is a JavaScript object that we are passing into the function where, 'NASA' is the user we want to lookup. <code>function(err, data, response)</code>is where the the data
+					 will come in. <code>console.log(data)</code>will output the raw JSON data to the console.</li>
+				</ul>
+				</p>
+				<h3>Lets take a look at the JSON response</h3>
+				<pre style="max-height: 300px">
+				<code>
+	[ { id: 11348282,
+    id_str: '11348282',
+    name: 'NASA',
+    screen_name: 'NASA',
+    location: '',
+    description: 'Explore the universe and discover our home planet with @NASA. We usually post in EDT (UTC-4).',
+    url: 'https://t.co/TcEE6O9Jfb',
+    entities: { url: [Object], description: [Object] },
+    protected: false,
+    followers_count: 19929157,
+    friends_count: 261,
+    listed_count: 85645,
+    created_at: 'Wed Dec 19 20:20:32 +0000 2007',
+    favourites_count: 1999,
+    utc_offset: -18000,
+    time_zone: 'Eastern Time (US & Canada)',
+    geo_enabled: true,
+    verified: true,
+    statuses_count: 44662,
+    lang: 'en',
+    status: 
+     { created_at: 'Thu Nov 17 01:44:42 +0000 2016',
+       id: 799065697200603100,
+       id_str: '799065697200603136',
+       text: '“Great Valley” found on Mercury provides more evidence that the small planet closest to the sun is shrinking. More:… https://t.co/Ki4NPKSFmf',
+       truncated: true,
+       entities: [Object],
+       source: '<a href="https://www.sprinklr.com" rel="nofollow">Sprinklr</a>',
+       in_reply_to_status_id: null,
+       in_reply_to_status_id_str: null,
+       in_reply_to_user_id: null,
+       in_reply_to_user_id_str: null,
+       in_reply_to_screen_name: null,
+       geo: null,
+       coordinates: null,
+       place: null,
+       contributors: null,
+       is_quote_status: false,
+       retweet_count: 373,
+       favorite_count: 822,
+       favorited: false,
+       retweeted: false,
+       possibly_sensitive: false,
+       lang: 'en' },
+    contributors_enabled: false,
+    is_translator: false,
+    is_translation_enabled: false,
+    profile_background_color: '000000',
+    profile_background_image_url: 'http://pbs.twimg.com/profile_background_images/590922434682880000/3byPYvqe.jpg',
+    profile_background_image_url_https: 'https://pbs.twimg.com/profile_background_images/590922434682880000/3byPYvqe.jpg',
+    profile_background_tile: false,
+    profile_image_url: 'http://pbs.twimg.com/profile_images/188302352/nasalogo_twitter_normal.jpg',
+    profile_image_url_https: 'https://pbs.twimg.com/profile_images/188302352/nasalogo_twitter_normal.jpg',
+    profile_banner_url: 'https://pbs.twimg.com/profile_banners/11348282/1478121007',
+    profile_link_color: '205BA7',
+    profile_sidebar_border_color: '000000',
+    profile_sidebar_fill_color: 'F3F2F2',
+    profile_text_color: '000000',
+    profile_use_background_image: true,
+    has_extended_profile: false,
+    default_profile: false,
+    default_profile_image: false,
+    following: false,
+    follow_request_sent: false,
+    notifications: false,
+    translator_type: 'regular' } ]
+				</code>
+				</pre>
+				<p>There is quite a bit of information in there. However, we do not need all of it. We can extract certain bits of data to learn about the user we looked up. Let's focus on a few things.
+				<ul>
+					<li><code>Id</code>: This gives us the Twitter id of the user in the form of an integer</li>
+					<li><code>Id_str</code>: Similar to one above, but in the form of a string</li>
+					<li><code>screen_name</code>: The users twitter handle</li>
+					<li><code>followers_count</code>: Gives us the total number of followers the user has</li>
+					<li><code>text</code>: The most recent tweet from the user's account</li>
+				</ul>
+				</br>
+				We can use this JSON data and extract the information we want. We can now modify our code to reflect the extraction of certain information:
+				</p>
+				<img src="assets/Gimages/accessing info from JSON.png">
+				<p>
+				In this bit of code we broke things down a bit further. On <b>Lines 12-13: </b> we set up an object with our search parameters, we will pass this separately to the <code>t.get()</code> function.
+				In <b>Lines 20-24:</b> this function is getting the specific data we asked for by accessing different attributes of the object. In this case we get the User ID, Screen_name, number of followers, and most 
+				recent tweet. We then have all of this printed to the console window.
+				</br>
+				The following data was extracted from the JSON response:
+				<pre style="max-height:200px">
+				<code>
+User Id: 11348282
+Screen_name: NASA
+Followers: 19929157
+tweet: “Great Valley” found on Mercury provides more evidence that the small planet closest to the sun is shrinking. More:…https://t.co/Ki4NPKSFmf
+				</code>
+				</pre>
+				</p>
+				
+				<p>Now that we have a better understanding of the get function, let's request a different set of data. This time instead of using <code>'users/lookup'</code> we are going to use 
+				<code>'statuses/user_timeline'</code> this allows us to lookup a specific user's timeline and get a specified number of their most recent tweets.
+				</p>
+				<img src="assets/Gimages/fivetweetsimg.png">
+				<p>The first 10 lines are the same as the first example, they contain the new instance of twit(t) and the API keys. The rest of the code was condensed into one function.
+				We now have <code>'statuses/user_timeline'</code> and the search parameters are a little bit different. We still have <code>screen_name</code> for the user we want to lookup. However,
+				we added <code>count</code>this tells Twitter that we want the five most recent tweets from this user. We then loop through the incoming data and pull out each tweet by using <code>data[i].text</code>
+				the data is then printed to the console.
+				</br>
+				Here is the response:
+				<pre style="max-height:200px">
+				<code>
+“Great Valley” found on Mercury provides more evidence that the small planet closest to the sun is shrinking. More:… https://t.co/Ki4NPKSFmf
+
+Even though it hasn't launched, our Asteroid Redirect Mission is already helping to close Strategic Knowledge Gaps:… https://t.co/VxE9I9Gmwb
+
+From New York City to Rio, we're helping cities address climate risks and we're sharing their solutions:… https://t.co/ij2hf0y9lW
+
+Two of the sun's coronal holes spewed solar wind towards Earth on Nov 8-9. Learn more from @NASASunEarth's #SDO:… https://t.co/ovJZH931qI
+
+Not only have we landed humans on moon &amp; missions on Mars, we've helped @JohnDeere develop self-driving tractors:… https://t.co/puJUEJoO7c
+				</code>
+				</pre>
+				</p>
+				
+				<h2>Post - posting tweets to our Twitter account with the API </h2>
+				<h3>Great, we now know how to use the Twitter API to extract or get data. Now we are going to learn how to post tweetts to our Twitter account using the post function</h3>
+				
+				<p>Posting tweets using the API is extremely simple. We'll post some code and break it down.</p>
+				<img src="assets/Gimages/firstTweetCode.png">
+				<p>
+				The first 10 lines are the same as the get example. It contains the API key and the twit object to use the library. Let's look at the new stuff.
+				<ul>
+					<li><code>t.post()</code>This is similar to <code>t.get()</code> it means we are calling the post function in the twit (t) object, this allows us to make posts to Twitter through the API </li>
+					<li><code>'statuses/updates'</code> means we want to post a status update to Twitter</li>
+					<li><code>{status: "Hello, world!..."}</code>  is a javascript object that we are passing in to the post function. We are setting the status of the post to the tweet we want</li>
+					<li><code>function(err, data, response)</code>is the callback function that returns error information if something goes wrong, the data in the form of an object and the response after posting the tweet</li>
+					<li>we also have the error print to the console if one occurs as well as "Tweet posted" if everything goes right</li>
+				</ul>
+				</br>
+				Let's take a look at the result:
+				</br>
+				<img src="assets/Gimages/firstTweet.png">
+				</p>
+				
+				<p>Now that we know how to post a tweet using the post function lets make it a little more interesting. We are going to create a simple twitter bot that posts a random number a set interval of time. Here's the code:
+				</br></br>
+				<img src="assets/Gimages/sendtweets10seconds.png">
+				</p>
+				<p>
+				In this, we create one function that we can pass to setInterval which takes a function to post a tweet, as well as the interval at which the tweet should be posted to Twitter. We use 
+				<code>var number = Math.floor((Math.random() * 100) + 1);</code> to generate a random number in the range of 1-100. We then create, on <b>Line 17-19</b> and object with the status we want to tweet.
+				This tweet includes the the random number at the end. <code>t.post('statuses/update', tweet, function)</code> tells the API that we want to post a twitter account with status <code>tweet</code> that 
+				we created above. The callback function is then called with information regarding the post. <code>sendTweet()</code> is then passed to the function <code>setInterval</code> along with the interval. 
+				<code>setInterval()</code> takes time in the form of milliseconds. 1000 milliseconds is equal to one second. So, 1000 * 10 tells setInterval to send the tweet every 10 seconds.
+				</p>
+				
+				<p>Here is the result, notice the time between tweets is 10 seconds. I do not recommend tweeting every 10 seconds, as this may raise some flags for tweeting to often. This is for demonstration purposes
+				</br></br>
+				The result:
+				</br>
+				<img src="assets/Gimages/tweets10seconds.png">
+				</p>
+				
+				<h2>Twitter API Stream feature</h2>
+				<p>Now we are going to talk about the stream feature of the Twitter API. We will then create a bot that takes advantage of this by responding to users who follow our bot.</p>
+				<p>The stream feature of the Twitter API gives us access to Twitters global stream of tweet data, this means we are able to get real time data tweet data. The two main streams available are the public
+				stream and the User Stream.
+				<ul>
+					<li><code>Public Stream</code>- This is a stream of all the public data flowing through twitter, this essentially gives us a view of every tweet happening on twitter.</li>
+					<li><code>User stream</code> - This is a stream that provides data and events for a specific user, and the one we will be using. This is concerned with the data flowing into a single user, 
+					in this case, our bot.</li>
+				</ul>
+				</p>
+				
+				<p>We will use the 'User' stream and the follow event to get to get data when anyone follows our bot</p>
+				<img src="assets/Gimages/followEventCode.png">
+				<p>Now to break it down:
+				<ul>
+					<li><b>Line 13: </b><code>var stream = t.stream('user')</code> Creates a variable called stream and uses the twit object to set the stream to 'user', this will get data related to our twitter account</li>
+					<li><b>Line 17: </b><code>stream.on('follow', followResponse)</code> this is turning the stream on so we can get real time data. <code>'follow'</code> sets the event to listen for, when someone 
+					follows our account we will execute the function <code>followResponse()</code></li>
+					<li>In the last few lines we are getting the JSON response and printing it to the console. We will look through this to find out how to get the name of the user we want to tweet a response to</li>
+				</ul>
+				</p>
+				<pre style="max-height:300px">
+				<code>
+{ event: 'follow',
+  source: 
+   { id: 799316936404439000,
+     id_str: '799316936404439041',
+     name: 'George Washington',
+     screen_name: 'Follow_Test1',
+     location: null,
+     url: null,
+     description: null,
+     protected: false,
+     followers_count: 0,
+     friends_count: 0,
+     listed_count: 0,
+     created_at: 'Thu Nov 15 18:23:03 +0000 2016',
+     favourites_count: 0,
+     utc_offset: null,
+     time_zone: null,
+     geo_enabled: false,
+     verified: false,
+     statuses_count: 0,
+     lang: 'en',
+     contributors_enabled: false,
+     is_translator: false,
+     is_translation_enabled: false,
+     profile_background_color: 'F5F8FA',
+     profile_background_image_url: null,
+     profile_background_image_url_https: null,
+     profile_background_tile: false,
+     profile_image_url: 'http://abs.twimg.com/sticky/default_profile_images/default_profile_1_normal.png',
+     profile_image_url_https: 'https://abs.twimg.com/sticky/default_profile_images/default_profile_1_normal.png',
+     profile_link_color: '1DA1F2',
+     profile_sidebar_border_color: 'C0DEED',
+     profile_sidebar_fill_color: 'DDEEF6',
+     profile_text_color: '333333',
+     profile_use_background_image: true,
+     default_profile: true,
+     default_profile_image: true,
+     following: null,
+     follow_request_sent: null,
+     notifications: null,
+     translator_type: 'none' },
+  target: 
+   { id: 799011006689267700,
+     id_str: '799011006689267717',
+     name: 'Bot',
+     screen_name: 'TweetyBot1',
+     location: null,
+     url: null,
+     description: null,
+     protected: false,
+     followers_count: 0,
+     friends_count: 0,
+     listed_count: 0,
+     created_at: 'Wed Nov 15 22:07:23 +0000 2016',
+     favourites_count: 0,
+     utc_offset: null,
+     time_zone: null,
+     geo_enabled: false,
+     verified: false,
+     statuses_count: 4,
+     lang: 'en',
+     contributors_enabled: false,
+     is_translator: false,
+     is_translation_enabled: false,
+     profile_background_color: 'F5F8FA',
+     profile_background_image_url: null,
+     profile_background_image_url_https: null,
+     profile_background_tile: false,
+     profile_image_url: 'http://abs.twimg.com/sticky/default_profile_images/default_profile_2_normal.png',
+     profile_image_url_https: 'https://abs.twimg.com/sticky/default_profile_images/default_profile_2_normal.png',
+     profile_link_color: '1DA1F2',
+     profile_sidebar_border_color: 'C0DEED',
+     profile_sidebar_fill_color: 'DDEEF6',
+     profile_text_color: '333333',
+     profile_use_background_image: true,
+     default_profile: true,
+     default_profile_image: true,
+     following: null,
+     follow_request_sent: null,
+     notifications: null,
+     translator_type: 'none' },
+  created_at: 'Thu Nov 15 18:26:41 +0000 2016' }
+
+				</code>
+				</pre>
+				
+				<p>At the top of this JSON data we can see the event is 'follow'. As we scroll down we see <code>source</code> and within this we can see the <code>name</code> and <code>screen_name</code> of the user who followed us.
+				We can now use this information to formulate a tweet that responds to the user who followed us. Let's write some code that does this.</p>
+				<img src="assets/Gimages/tweet response.png">
+				<p>
+				<ul>
+					<li>The lines above are the same to the previous example. The stream is set to 'user' and it is listening for 'follow' events</li>
+					<li>Now instead of printing the JSON data to the console, we are going to extract the <code>Screen_name</code> and use it to formulate a response. <code>var name = msg.source.screen_name</code>saves
+					the Twitter handle of the user that followed us to the name variable.</li>
+					<li>We then create a function that takes in a message that we want to send called <code>sendTweet()</code> we use the '@' symbol to target the user that followed us then we concatentate the message</li>
+					<li>We pass the message to <code>sendTweet()</code> which uses <code>t.post()</code> to send our response to Twitter.</li>
+					<li>The callback function is then executed, and we receive the err message if something goes wrong or the "successful tweet" if it works</li>
+				</ul>
+				</p>
+				<img src="assets/Gimages/follower1.png" width="65%" height="65%"> </br>
+				<img src="assets/Gimages/tweet image follow.png" width="65%" height="65%">
+				
+				<h3>We learned a lot so far. Now we are going to put it all together to create a bot that tweets a random message at users who mention our Twitter handle</h3>
+				
+				
+        </div>
+    </section>
+	
+	   <!--STATS SECTION-->
+    <section class="c-blue" id="FinalBot">
+        <div class="container">
+			<h1>Creating a bot</h1>
+			<h3>It is time to put what we just learned to use. Let's create a bot that responds to users that mention us.</h3>
+			
+			<h2>Positive Message Bot</h2>
+			<p>We are going to the stream feature of the API as well as the post function. When ever a Twitter user mentions our bot in a tweet using '@TweetyBot1' we are going to respond to them with a random
+			positive message. Let's  get started.</p>
+			<img src="assets/Gimages/tweet random pos message.png">
+			<p>We created one big function that handles everything the bot needs to do. The first 11 lines contain our reference to the twit library as well as our API keys.
+			<ul>
+			<li><b>Line 12: </b>First, as we have seen before, we set the <code>stream</code> to 'user' so we get information relevant to our account</li>
+			</br>
+			<li><b>Line 13: </b>Now, we change the event from the previous example. Instead of listening for <code>follows</code> we are going to listen for <code>tweet</code>that mentions our Twitter handle. When this happens
+			the <code>sendTweet()</code> function will be activated and will generate a message</li>
+			</br>
+			<li><b>Lines 16-48:</b>Next we will create our big function called <code>sendTweet()</code></li>
+			</br>
+			<li><b>Lines 18-24: </b>Within this we create an array named <code>posMsg</code> that is fill with positive and motivating messages.</li>
+			</br>
+			<li><b>Line 27: </b>We then create a variable to hold a random number. This will be the index for the array so we can call get a random phrase</li>
+			</br>
+			<li><b>Line 30: </b>We then extract the <code>screen_name</code> from the user that mentioned us in a tweet and save it to the variable <code>sender</code></li>
+			</br>
+			<li><b>Line 31:</b>We also extract our own <code>screen_name</code> from the JSON data, this will be used to ensure the tweet sent from the other user is actually tweeting directly at us</li>
+			</br>
+			<li><b>Line33: </b> If the tweet was directed at our Twitter Bot, formulate the response and send it, we create the object <code>tweet</code> to hold the status that we want to tweet</li>
+			</br>
+			<li><b>Line 39-44:</b> This is a familiar sight. We use the post function and 'statuses/update' to post our tweet directed at the user that mention us.</li>
+			</br>
+			</ul></p>
+			
+			<p>Now lets see it in action:</p>
+			<img src="assets/Gimages/mentionbot.png"> </br>
+			<img src="assets/Gimages/mentionresponse.png"></br>
+			<img src="assets/Gimages/responsebot1.png"></br>
+			<img src="assets/Gimages/response2.png"></br>
+			
+			<p>Not too bad! We just made a bot that can respond to users with a random message when mentioned in a tweet. This was done with relatively little code. You now have a pretty good foundation for creating 
+			more bots and working more extensively with the Twitter API.</p>
+			
+			<h2>What Next?</h2>
+			<p>We have only just scratched the surface with what you can do with the Twitter API. The bots you make are left to your imagination. You can bring in additional APIs, make more complicated bots that 
+			use the get function to retrieve some data about a specific twitter list or user and then use stream and post to interact with Twitter in an automated fashion.</p>
+			
+			<p>Continue reading the <a href="https://dev.twitter.com/docs">Twitter Developer Documentation</a> and the
+				<a href="https://github.com/ttezel/twit">Twit - Twitter API Client</a> documentation to find out more ways to interact with the Twitter API.</p>
+				
+			<h3>Have fun making Twitter Bots!</h3>
+			 
+			 
+            </div>
+        </div>
+    </section>
+
+    <!--FOOTER SECTION -->
+    <div id="footer">
+        2016| Twitter API How-To Guide  
+         
+    </div>
+    <!-- END FOOTER SECTION -->
+
+    <!-- JAVASCRIPT FILES PLACED AT THE BOTTOM TO REDUCE THE LOADING TIME  -->
+    <!-- CORE JQUERY  -->
+    <script src="assets/plugins/jquery-1.10.2.js"></script>
+    <!-- BOOTSTRAP CORE SCRIPT   -->
+    <script src="assets/plugins/bootstrap.js"></script>
+  
+    <!-- CUSTOM SCRIPTS -->
+    <script src="assets/js/custom.js"></script>
+
+</body>
+</html>
