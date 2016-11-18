@@ -202,12 +202,16 @@
 				<ul>
 					<li><b>Line 2: </b><code>var twit = require('twit')</code> This line of code essentially imports the twit library so that we can make use of its functions and interact with the Twitter API.
 					It loads the twit package and gives us access to all the functions and properites of the library throught the <code>twit</code> variable. Without this, accessing the API would be much more difficult</li>
+					</br>
 					<li><b>Lines 5-9: </b>Remember those keys we got after creating a new Twitter application? Well it's time to put those to use. <code>var t = new twit</code> is creating a new instance of twit with our
 					API keys. These keys are tied to our new Twitter account and allow us to access the Twitter API. Twitter uses these to keep track of how much and how often we are using the API. This, along with line 2,
 					will appear everytime we are using twit and the Twitter API.</li>
+					</br>
 					<li><b>Lines 13-14: </b> <code>t.get()</code> means we are calling the get function in the twit (t) object. <code>'users/lookup'</code> signifies the action we are taking - we want to lookup information.
-					<code>{screen_name: 'NASA'}</code> is a JavaScript object that we are passing into the function where, 'NASA' is the user we want to lookup. <code>function(err, data, response)</code>is where the the data
-					 will come in. <code>console.log(data)</code>will output the raw JSON data to the console.</li>
+					<code>{screen_name: 'NASA'}</code> is a JavaScript object that we are passing into the function where, 'NASA' is the user we want to lookup. <code>function(err, data, response)</code>is a callback
+					function. This function will run after we execute the <code>get()</code>function. <code>err</code> If an error occurs while processing our request for data, this variable will contain
+					an object that describes the error that occurred. <code>res</code> will contain an object with all the data that we want to access. <code>response</code> this will contain
+					an object of the actual response the Twitter API sends back to us in regards to what we requested<code>console.log(data)</code>will output the raw JSON data to the console.</li>
 				</ul>
 				</p>
 				<h3>Lets take a look at the JSON response</h3>
@@ -234,7 +238,7 @@
     statuses_count: 44662,
     lang: 'en',
     status:
-     { created_at: 'Thu Nov 17 01:44:42 +0000 2016',
+     { created_at: 'Thu Nov 15 01:44:42 +0000 2016',
        id: 799065697200603100,
        id_str: '799065697200603136',
        text: '“Great Valley” found on Mercury provides more evidence that the small planet closest to the sun is shrinking. More:… https://t.co/Ki4NPKSFmf',
@@ -333,6 +337,10 @@ Not only have we landed humans on moon &amp; missions on Mars, we've helped @Joh
 				</code>
 				</pre>
 				</p>
+				
+				<p>There is a very long list on the official Twitter Documentation page of different ways that get can be used.
+				Besides using it to lookup users, or statuses/timelines, it can be used to get lists of followers for specific users, favorited tweets, geo locations, direct messages, 
+				a list of suggested Twitter users to follow, and many, many more. They can all be found on the side bar at <a href="https://dev.twitter.com/rest/reference/get/search/tweets">Twitter Docs.</a></p>
 
 				<h2>Post - posting tweets to our Twitter account with the API </h2>
 				<h3>Great, we now know how to use the Twitter API to extract or get data. Now we are going to learn how to post tweetts to our Twitter account using the post function</h3>
@@ -372,6 +380,9 @@ Not only have we landed humans on moon &amp; missions on Mars, we've helped @Joh
 				</br>
 				<img src="assets/Gimages/tweets10seconds.png">
 				</p>
+				
+				<p>Similar to the get function, there are many more actions that can be used with the post function. These actions include changing values of customisable features on the user's twitter account, 
+				posting subscriber lists, posting different forms of media, and many, many more. These can all be found on the side bar of <a href="https://dev.twitter.com/rest/reference/get/search/tweets">Twitter Docs.</a></p></p>
 
 				<h2>Twitter API Stream feature</h2>
 				<p>Now we are going to talk about the stream feature of the Twitter API. We will then create a bot that takes advantage of this by responding to users who follow our bot.</p>
@@ -389,8 +400,10 @@ Not only have we landed humans on moon &amp; missions on Mars, we've helped @Joh
 				<p>Now to break it down:
 				<ul>
 					<li><b>Line 13: </b><code>var stream = t.stream('user')</code> Creates a variable called stream and uses the twit object to set the stream to 'user', this will get data related to our twitter account</li>
+					</br>
 					<li><b>Line 17: </b><code>stream.on('follow', followResponse)</code> this is turning the stream on so we can get real time data. <code>'follow'</code> sets the event to listen for, when someone
 					follows our account we will execute the function <code>followResponse()</code></li>
+					</br>
 					<li>In the last few lines we are getting the JSON response and printing it to the console. We will look through this to find out how to get the name of the user we want to tweet a response to</li>
 				</ul>
 				</p>
@@ -524,9 +537,10 @@ Not only have we landed humans on moon &amp; missions on Mars, we've helped @Joh
 			</br>
 			<li><b>Lines 16-48:</b>Next we will create our big function called <code>sendTweet()</code></li>
 			</br>
-			<li><b>Lines 18-24: </b>Within this we create an array named <code>posMsg</code> that is fill with positive and motivating messages.</li>
+			<li><b>Lines 18-24: </b>Within this function we create an array named <code>posMsg</code> that is filled with positive and motivating messages.</li>
 			</br>
-			<li><b>Line 27: </b>We then create a variable to hold a random number. This will be the index for the array so we can call get a random phrase</li>
+			<li><b>Line 27: </b>We then create a variable to hold a random number. This will be the index for the array so we can call get a random phrase. This will work like such <code>posMsg[randIndex]</code>
+			which is just like using the index while looping through an array <code>posMsg[1]</code></li>
 			</br>
 			<li><b>Line 30: </b>We then extract the <code>screen_name</code> from the user that mentioned us in a tweet and save it to the variable <code>sender</code></li>
 			</br>
@@ -536,7 +550,10 @@ Not only have we landed humans on moon &amp; missions on Mars, we've helped @Joh
 			</br>
 			<li><b>Line 39-44:</b> This is a familiar sight. We use the post function and 'statuses/update' to post our tweet directed at the user that mention us.</li>
 			</br>
-			</ul></p>
+			</ul>
+			This can be made into a much more complicated bot. Instead of simply adding phrases to the array, a link could be made to a database of similar phrases. This would allow you to have almost an endless supply of phrases.
+			Additionally, you could use another API such as the WORDNIK API. This would allow you to find definitions of certain words or even create poems out of messages sent to your bot. The possibilites are endless.
+			</p>
 
 			<p>Now lets see it in action:</p>
 			<img src="assets/Gimages/requesttext.png"> </br>
